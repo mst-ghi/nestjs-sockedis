@@ -14,7 +14,7 @@
 2. Run npm/yarn install
 
 ```bash
-cd nestjs-package-starter
+cd nestjs-sockedis
 npm install
 ```
 
