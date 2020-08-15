@@ -43,6 +43,7 @@
         "@nestjs/platform-socket.io": "^7.4.2",
         "@nestjs/websockets": "^7.4.2",
         "ioredis": "^4.17.3",
+        "jsonwebtoken": "^8.5.1",
         "rxjs": "^6.6.2",
         "socket.io": "^2.3.0"
     },
