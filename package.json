@@ -1,5 +1,5 @@
 {
-    "name": "nestjs-sockedis",
+    "name": "nest-sockedis",
     "version": "0.7.0",
     "description": "NestJS Websocket Redis JWT (starter)",
     "author": "Mostafa Gholami <mostafagholamidev@gmail.com>",
