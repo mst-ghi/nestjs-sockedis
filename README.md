@@ -6,17 +6,7 @@
   </a>
 </div>
 
-<h3 align="left">NestJS SocketIO Redis </h3>
-
-### Installation
-
-1. Clone the repo
-2. Run npm/yarn install
-
-```bash
-cd nestjs-sockedis
-npm install
-```
+<h3 align="left">NestJS package, SocketIO, Redis, JWT, JsonWebToken </h3>
 
 ## Change Log
 

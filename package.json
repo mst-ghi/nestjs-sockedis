@@ -1,7 +1,7 @@
 {
     "name": "nestjs-sockedis",
-    "version": "0.1.0",
-    "description": "NestJS websocket redis",
+    "version": "0.7.0",
+    "description": "NestJS Websocket Redis JWT (starter)",
     "author": "Mostafa Gholami <mostafagholamidev@gmail.com>",
     "license": "MIT",
     "readmeFilename": "README.md",
@@ -26,16 +26,18 @@
         "socketio",
         "socket",
         "redis",
-        "ioredis"
+        "ioredis",
+        "jwt",
+        "jsonwebtoken"
     ],
     "publishConfig": {
         "access": "public"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/nestjsplus/nestjs-package-starter"
+        "url": "https://github.com/mst-ghi/nestjs-sockedis.git"
     },
-    "bugs": "https://github.com/nestjsplus/nestjs-package-starter",
+    "bugs": "https://github.com/mst-ghi/nestjs-sockedis.git",
     "peerDependencies": {
         "@nestjs/common": "^6.0.0"
     },
