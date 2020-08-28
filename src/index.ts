@@ -1,4 +1,4 @@
 export * from './websocket.module';
-export * from './util/adapters.init';
-export * from './util/base.gateway';
-export * from './util/jwt-ws-guard';
+export * from './adapters.init';
+export * from './base.gateway';
+export * from './jwt-ws-guard';

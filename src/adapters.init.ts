@@ -1,10 +1,10 @@
 import { INestApplication } from '@nestjs/common';
 
-import { RedisPropagatorService } from '../redis-propagator/redis-propagator.service';
-import { SocketStateAdapter } from '../socket-state/socket-state.adapter';
-import { SocketStateService } from '../socket-state/socket-state.service';
+import { RedisPropagatorService } from './redis-propagator/redis-propagator.service';
+import { SocketStateAdapter } from './socket-state/socket-state.adapter';
+import { SocketStateService } from './socket-state/socket-state.service';
 
-export const initAdapters = (
+export const InitAdapters = (
   app: INestApplication,
   jwtService,
 ): INestApplication => {
