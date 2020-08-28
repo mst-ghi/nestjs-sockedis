@@ -1,7 +1,7 @@
 {
     "name": "nest-sockedis",
-    "version": "0.7.3",
-    "description": "NestJS Websocket Redis JWT (starter)",
+    "version": "0.8.0",
+    "description": "NestJS Websocket Redis JWT",
     "author": "Mostafa Gholami <mostafagholamidev@gmail.com>",
     "license": "MIT",
     "readmeFilename": "README.md",

@@ -30,15 +30,19 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     //
   }
 
-  async createTokens(ip_address: string, user_id: string, type_id: string) {
-    const payload: JwtPayload = { sub: user_id };
+  /**
+   * create AccessToken and Refresh Token
+   *
+   * @param userId
+   * @param clientId [any unique value related to the user]
+   *
+   * @returns {accessToken: '', refreshToken: ''}
+   */
+  async createTokens(userId: string, clientId: string) {
+    const payload: JwtPayload = { sub: userId };
     const tokens = await this.createAccessToken(payload);
-    await this.deleteRefreshTokenForUser(user_id);
-    tokens.refresh_token = await this.createRefreshToken({
-      user_id: user_id,
-      client_id: type_id,
-      ip_address,
-    });
+    await this.deleteRefreshTokenForUser(userId);
+    tokens.refreshToken = await this.createRefreshToken({ userId, clientId });
     return tokens;
   }
 
@@ -51,31 +55,30 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     options.jwtid = uuid();
     const signedPayload = sign(payload, this.jwtKey, options);
     return {
-      access_token: signedPayload,
-      refresh_token: '',
+      accessToken: signedPayload,
+      refreshToken: '',
     };
   }
 
   async createRefreshToken(tokenContent: {
-    user_id: string;
-    client_id: string;
-    ip_address: string;
+    userId: string;
+    clientId: string;
   }): Promise<string> {
-    const { user_id, ip_address } = tokenContent;
-    await this.deleteRefreshTokenByClientId(user_id);
+    const { userId } = tokenContent;
+    await this.deleteRefreshTokenByClientId(userId);
     return randomBytes(64).toString('hex');
   }
 
-  async deleteRefreshTokenForUser(user_id: string): Promise<void> {
-    await this.revokeTokenForUser(user_id);
+  async deleteRefreshTokenForUser(userId: string): Promise<void> {
+    await this.revokeTokenForUser(userId);
   }
 
-  async deleteRefreshTokenByClientId(user_id: string): Promise<void> {
-    await this.revokeTokenForUser(user_id);
+  async deleteRefreshTokenByClientId(userId: string): Promise<void> {
+    await this.revokeTokenForUser(userId);
   }
 
-  async deleteRefreshToken(user_id) {
-    await this.revokeTokenForUser(user_id);
+  async deleteRefreshToken(userId) {
+    await this.revokeTokenForUser(userId);
   }
 
   async decodeAndValidateJWT(token: string): Promise<any> {
@@ -112,8 +115,8 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     return this.usersExpired[id] && expire < this.usersExpired[id];
   }
 
-  private async revokeTokenForUser(user_id: string): Promise<any> {
-    this.usersExpired[user_id] = moment()
+  private async revokeTokenForUser(userId: string): Promise<any> {
+    this.usersExpired[userId] = moment()
       .add(this.expiresInDefault, 's')
       .unix();
   }
