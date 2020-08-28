@@ -4,7 +4,7 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
-import { RedisPropagatorInterceptor } from './redis-propagator/redis-propagator.interceptor';
+import { RedisPropagatorInterceptor } from '../redis-propagator/redis-propagator.interceptor';
 import { Server } from 'socket.io';
 
 @UseInterceptors(RedisPropagatorInterceptor)
