@@ -1,9 +1,10 @@
 ## Nest Sockedis
 
 > **`Nestjs`**, **`SocketIO`**, **`Redis`**, **`JWT`**
-> A library for much **easier** implementation of **socketIO** in the **NestJs** framework with user **authentication** using the **jwt** method
-> Also implement operations with **redis**
+>
 > &NewLine;
+> A library for much **easier** implementation of **socketIO** in the **NestJs** framework with user **authentication** using the **jwt** method
+> Also implement operations with **redis** > &NewLine;
 
 ### Installation
 
@@ -36,7 +37,7 @@ $ yarn add nest-sockedis
 ```typescript
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { InitAdapters } from 'nest-sockedis/dist/adapter/adapters.init';
+import { InitAdapters } from 'nest-sockedis';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -53,7 +54,7 @@ bootstrap();
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { WebsocketModule } from 'nest-sockedis/dist/module/websocket.module';
+import { WebsocketModule } from 'nest-sockedis';
 
 @Module({
   imports: [WebsocketModule],
@@ -69,7 +70,7 @@ export class AppModule {}
 
 ```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { BaseJwtService } from 'nest-sockedis/dist/jwt/base-jwt.service.ts';
+import { BaseJwtService } from 'nest-sockedis';
 
 @Injectable()
 export class JwtService extends BaseJwtService {
@@ -105,9 +106,7 @@ import {
   ConnectedSocket,
 } from '@nestjs/websockets';
 import { UseGuards } from '@nestjs/common';
-
-import BaseGateway from 'nest-sockedis/dist/gateway/base.gateway';
-import { JwtWsGuard } from 'nest-sockedis/dist/guard/jwt-ws-guard';
+import { BaseGateway, JwtWsGuard } from 'nest-sockedis';
 
 @WebSocketGateway({ path: '/chats' })
 export class ChatsGateway extends BaseGateway {
@@ -132,7 +131,7 @@ export class ChatsGateway extends BaseGateway {
 ```typescript
 import { Module } from '@nestjs/common';
 import { ChatsGateway } from './chats.gateway';
-import { JwtWsGuard } from 'nest-sockedis/dist/guard/jwt-ws-guard';
+import { JwtWsGuard } from 'nest-sockedis';
 @Module({
   providers: [JwtWsGuard, ChatsGateway],
 })
@@ -159,11 +158,27 @@ handshake?: {
 > Your **RedisService**
 
 ```typescript
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { RedisModule } from 'nest-sockedis';
+
+@Module({
+  imports: [RedisModule],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+&NewLine;
+
+```typescript
 import { Injectable, Logger } from '@nestjs/common';
-import { RedisService } from 'nest-sockedis/dist/redis/redis.service';
+import { RedisService } from 'nest-sockedis';
 
 @Injectable()
-export class YourRedisSevice {
+export class YourRedisService {
   constructor(private readonly redisService: RedisService) {}
 
   async get(key: string): Promise<any> {
@@ -183,6 +198,8 @@ export class YourRedisSevice {
   }
 }
 ```
+
+&NewLine;
 
 ##### Change Log
 

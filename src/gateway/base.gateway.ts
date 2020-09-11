@@ -8,7 +8,7 @@ import { RedisPropagatorInterceptor } from '../redis-propagator/redis-propagator
 import { Server } from 'socket.io';
 
 @UseInterceptors(RedisPropagatorInterceptor)
-export default abstract class BaseGateway
+export abstract class BaseGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   protected server: Server;
   protected logger: Logger;
