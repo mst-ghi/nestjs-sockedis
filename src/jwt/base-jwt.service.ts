@@ -102,7 +102,7 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     return null;
   }
 
-  private async validateToken(
+  async validateToken(
     token: string,
     ignoreExpiration: boolean = false,
   ): Promise<JwtPayload> {
@@ -111,14 +111,12 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     }) as JwtPayload;
   }
 
-  private async isBlackListed(id: string, expire: number): Promise<boolean> {
+  async isBlackListed(id: string, expire: number): Promise<boolean> {
     return this.usersExpired[id] && expire < this.usersExpired[id];
   }
 
-  private async revokeTokenForUser(userId: string): Promise<any> {
-    this.usersExpired[userId] = moment()
-      .add(this.expiresInDefault, 's')
-      .unix();
+  async revokeTokenForUser(userId: string): Promise<any> {
+    this.usersExpired[userId] = moment().add(this.expiresInDefault, 's').unix();
   }
 
   async handleSocketConnection(authorization: string) {
