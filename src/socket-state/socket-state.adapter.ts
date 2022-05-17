@@ -12,14 +12,6 @@ interface TokenPayload {
 export interface AuthenticatedSocket extends Socket {
   id: string;
   auth: TokenPayload;
-  handshake?: {
-    query?: {
-      token?: string;
-    };
-    headers?: {
-      authorization?: string;
-    };
-  };
 }
 
 export class SocketStateAdapter extends IoAdapter implements WebSocketAdapter {
@@ -32,7 +24,7 @@ export class SocketStateAdapter extends IoAdapter implements WebSocketAdapter {
     super(app);
   }
 
-  public create(port: number, options: ServerOptions = {}): Server {
+  public create(port: number, options: ServerOptions): Server {
     const server = super.createIOServer(port, options);
     this.redisPropagatorService.injectSocketServer(server);
 

@@ -12,6 +12,7 @@ export const InitAdapters = (
 ): INestApplication => {
   const socketStateService = app.get(SocketStateService);
   const redisPropagatorService = app.get(RedisPropagatorService);
+
   app.useWebSocketAdapter(
     new SocketStateAdapter(
       app,
@@ -20,5 +21,6 @@ export const InitAdapters = (
       jwtService ? jwtService : new JwtService(),
     ),
   );
+
   return app;
 };

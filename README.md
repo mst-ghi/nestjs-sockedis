@@ -24,6 +24,9 @@ $ yarn add nest-sockedis
 
 - REDIS_HOST=127.0.0.1
 - REDIS_PORT=6379
+- REDIS_USERNAME=username
+- REDIS_PASSWORD=password
+- REDIS_DATABASE=0
 - JWT_TOKEN=strong_hash_string
 - JWT_ACCESS_TOKEN_TTL=13600 // 3600 second
 - JWT_REFRESH_TOKEN_TTL=15 // 15 days
@@ -38,10 +41,13 @@ $ yarn add nest-sockedis
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { InitAdapters } from 'nest-sockedis';
+// import { YourJwtService } from './jwt/jwt.service'; import your jwt service
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // InitAdapters(app, new YourJwtService()); inject your jwt service
+  // or
   InitAdapters(app);
 }
 
