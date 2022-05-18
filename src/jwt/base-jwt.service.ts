@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { WsException } from '@nestjs/websockets';
 
-import { sign, SignOptions, verify } from 'jsonwebtoken';
+import { sign, SignOptions, verify, decode } from 'jsonwebtoken';
 import { randomBytes } from 'crypto';
 import * as moment from 'moment';
 import uuid = require('uuid');
@@ -109,6 +109,10 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     return verify(token, this.jwtKey, {
       ignoreExpiration,
     }) as JwtPayload;
+  }
+
+  async decodeToken(token: string): Promise<JwtPayload> {
+    return decode(token, { complete: true }) as JwtPayload;
   }
 
   async isBlackListed(id: string, expire: number): Promise<boolean> {
