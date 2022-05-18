@@ -111,8 +111,8 @@ export abstract class BaseJwtService implements JwtServiceInterface {
     }) as JwtPayload;
   }
 
-  async decodeToken(token: string): Promise<JwtPayload> {
-    return decode(token, { complete: true }) as JwtPayload;
+  decodeToken(token: string, options: any = {}) {
+    return decode(token, options);
   }
 
   async isBlackListed(id: string, expire: number): Promise<boolean> {
