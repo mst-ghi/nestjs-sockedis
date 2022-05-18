@@ -1,6 +1,6 @@
 {
   "name": "nest-sockedis",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "NestJS Websocket Redis JWT",
   "author": "Mostafa Gholami <mostafagholamidev@gmail.com>",
   "license": "MIT",
@@ -39,12 +39,11 @@
   },
   "bugs": "https://github.com/mst-ghi/nestjs-sockedis.git",
   "peerDependencies": {
-    "@nestjs/common": "^7.0.0"
+    "@nestjs/common": "^8.0.0"
   },
   "dependencies": {
     "@nestjs/platform-socket.io": "^8.4.5",
     "@nestjs/websockets": "^8.4.5",
-    "crypto": "^1.0.1",
     "ioredis": "^5.0.5",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.27.0",
