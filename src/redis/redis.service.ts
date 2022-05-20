@@ -24,6 +24,11 @@ export class RedisService {
     private readonly redisIo,
   ) {}
 
+  /**
+   * @deprecated
+   * @param eventName
+   * @returns
+   */
   public fromEvent<T extends RedisSocketEventSendDTO>(
     eventName: string,
   ): Observable<T> {
